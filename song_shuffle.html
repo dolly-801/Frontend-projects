@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body{
+            background-image:url("D:/python_work/media/istockphoto-1620065544-612x612.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #player{
+            height:640px;
+            width:316px;
+            margin-top: 175px ;
+            margin-left: 730px;
+            border:10px;
+            border-color: black;
+            border-radius: 49px;
+            border-style: groove;
+            background-image: url("D:/python_work/media/ipod.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: black;
+        }
+        #record{
+            margin-top: 63px;
+            margin-left:80px;
+            height:195px;
+            width:207px;
+            /* border:rgba(80, 75, 75, 0.863); */
+            border-color: black;
+            border-radius: 110px;
+            border-style: unset;
+            animation: rotation 10s linear infinite;
+        }
+        @keyframes rotation{
+            0% {transform: rotate(-360deg);}
+        }
+        .buttons{
+            background-color: black;
+            color: aliceblue;
+            height:40px;
+            width: 40px;
+        }
+        #prev{
+            position:absolute;
+            top:620px;
+            left:848px;
+            /* margin-top: -21px;
+            margin-bottom: 11px;
+            margin-left: 97px;
+            margin-right: 0px; */
+            /* margin-top: 173px;
+            margin-left: 99px; */
+            border-radius: 100px;
+            border-color: black;
+        }
+        #next{
+            position:absolute;
+            top:620px;
+            left:990px;
+            /* margin-top: 171px;
+            margin-left: 249px;
+            margin-bottom: -36px; */
+            /* margin-top: -200px;
+            margin-left: 249px;
+            margin-bottom: 0px; */
+            border-radius: 100px;
+            border-color: black;
+        }
+        #play-pause{
+            position:absolute;
+            top:693px;
+            left:916px;
+            /* margin-bottom: 45px;
+            margin-top: 4px;
+            margin-left: 167px; */
+            border:none;
+            border-color:none;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="player">
+        <img id="record" src="D:\python_work\media\record.webp" alt="musical record"/>
+        <audio id="audio" src=""></audio>
+        <button class="buttons" id="next">>></button>
+        <button class="buttons" id="prev"><<</button>
+        <button class="buttons" id="play-pause"></button>
+        
+
+        <!-- <div id="controls">
+            <button id="prev"><<</button>
+            <button id="play-pause"></button>
+            <button id="next">>></button>
+        </div> -->
+
+        <!-- <div class="controls">
+            <button id="prev"><<</button>
+        </div>
+        <div class="controls">
+            <button id="play-pause"></button>
+        </div>
+        <div class="controls">
+            <button id="next">>></button>
+        </div> -->
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const playPauseBtn = document.getElementById('play-pause');
+        const nextBtn = document.getElementById('next');
+        const prevBtn = document.getElementById('prev');
+
+        const songs = [
+            {src:'D:/music/New folder/Another Life.mp3'},
+            {src:'D:/music/New folder/Galway Girl.mp3'},
+            {src:'D:/music/New folder/First Time.mp3'},
+            {src:'D:/music/New folder/Cold Water.mp3'},
+            {src:'D:/music/New folder/Cheap Thrills.mp3'},
+            {src:'D:/music/New folder/Close.mp3'},
+            {src:'D:/music/eng/Sunflower .mp3'},
+            {src:'D:/music/eng/Vexento - Ascend .mp3'},
+            {src:'D:/music/eng/Roar .mp3'},
+            {src:'D:/music/eng/Love Lies .mp3'},
+            {src:'D:/music/eng/Lord Huron - The Night We Met .mp3'},
+            {src:'D:/music/eng/Cashmere Cat, Major Lazer, Tory Lanez - Miss You.mp3'},
+        ];
+
+
+        let currentSongIndex = 0;
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseBtn.textContent = 'Play';
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            updateSong();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            updateSong();
+        });
+
+        function updateSong() {
+            audio.src = songs[currentSongIndex].src;
+            audio.play();
+            playPauseBtn.textContent = 'Pause';
+        }
+
+        updateSong();
+
+    </script>
+</body>
+</html>
+

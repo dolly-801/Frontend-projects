@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-image: url("D:/python_work/media/background-6650677_1280.jpg");
+            background-repeat: repeat;
+            background-color: beige;
+            background-size:1500px;
+        
+        }
+        #gallery{
+            height: 500px;
+            width: 400px;
+            position:absolute;
+            top:170px;
+            left:700px;
+            border: 15px;
+            border-color:#363137;
+            border-style: groove;
+            border-top-left-radius: 222px;
+            border-bottom-right-radius: 126px;
+            border-top-right-radius: 222px;
+            border-bottom-left-radius: 126px;
+            background-color:#b0867d;
+        }
+        img{
+            height: 500px;
+            width: 400px;
+            border-top-left-radius: 222px;
+            border-bottom-right-radius: 126px;
+            border-top-right-radius: 222px;
+            border-bottom-left-radius: 126px;
+        }
+        .buttons{
+            height:100px;
+            width:210px;
+            border: 2px;
+            border-color:#363137;
+            border-style: groove;
+            border-top-left-radius: 141px;
+            border-bottom-right-radius: 141px;
+            border-top-right-radius:141px;
+            border-bottom-left-radius: 141px;
+            background-color:#b0867d;
+            color:#363137;
+            text-align: center;
+            text-decoration: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 9px #999;
+            
+        }
+        .buttons:hover {background-color: #d67eae}
+
+        .buttons:active {
+            background-color: #d67eae ;
+            box-shadow: 0 5px #47062c;
+            transform: translateY(4px);
+        }
+        #prev{
+            position:absolute;
+            top:557px;
+            left:430px;
+        }    
+        #next{
+            position:absolute;
+            top:557px;
+            left:1199px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="gallery">
+        <img id="image" src="" alt="Random Image">
+    </div>
+    <button class="buttons" id="prev">PREVIOUS</button>
+    <button class="buttons" id="next">NEXT</button>
+         
+        
+    <script>
+        const image = document.getElementById('image');
+        const nextBtn = document.getElementById('next');
+        const prevBtn = document.getElementById('prev');
+
+        const images = [
+            'D:/python_work/media/sample images/blooming-4112348_640.jpg',
+            'D:/python_work/media/sample images/flower-7937334_640.webp',
+            'D:/python_work/media/sample images/flower-8140215_640.webp',
+            'D:/python_work/media/sample images/flowers-870557_640.jpg',
+            'D:/python_work/media/sample images/spring-2174750_640.jpg',
+            'D:/python_work/media/sample images/flower-66809_640.jpg',
+            'D:/python_work/media/sample images/flowers-9115519_640.webp',
+            'D:/python_work/media/sample images/tulip-8765477_640.webp',
+            'D:/python_work/media/sample images/flowers-7739155_640.webp',
+            'D:/python_work/media/sample images/key-5105878_640.jpg'
+        ];
+
+        let currentIndex = Math.floor(Math.random() * images.length);
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        });
+
+        function updateImage() {
+            image.src = images[currentIndex];
+        }
+
+        updateImage();
+
+    </script>
+
+</body>
+</html>
